@@ -1,0 +1,15 @@
+..\Catamaran_API\bin\
+..\Catamaran_API\obj\
+
+..\Catamaran_Models\bin\
+..\Catamaran_Models\obj\
+
+..\CatamaranUI\bin\
+..\CatamaranUI\obj\
+/.vs/Catamaran
+/CatamaranTests/bin/Debug
+/CatamaranTests/obj
+/Catamaran_API/bin/Debug/net5.0
+/Catamaran_API/obj
+/Catamaran_Models/bin/Debug/netcoreapp3.1
+/Catamaran_Models/obj
