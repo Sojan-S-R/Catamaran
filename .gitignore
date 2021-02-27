@@ -13,3 +13,5 @@
 /Catamaran_API/obj
 /Catamaran_Models/bin/Debug/netcoreapp3.1
 /Catamaran_Models/obj
+/CatamaranDB/bin/Debug
+/CatamaranDB/obj/Debug

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Catamaran_API.DataAccess
 {
-    public static class DatabaseAccess
+    public static class DatabaseAccessManager
     {
         public static ITransactionModel FetchTransaction(DataSearchModel search)
         {
