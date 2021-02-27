@@ -58,7 +58,7 @@
     <Folder Include="Properties" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="RetreiveTransactionByID.sql" />
+    <Build Include="Retreive_Transaction.sql" />
     <Build Include="TransactionTable.sql" />
   </ItemGroup>
   <ItemGroup>

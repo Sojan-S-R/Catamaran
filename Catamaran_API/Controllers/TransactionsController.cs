@@ -10,6 +10,12 @@ namespace Catamaran_API.Controllers
     [ApiController]
     public class TransactionsController : ControllerBase
     {
+
+        [HttpGet]
+        public string Get()
+        {
+            return "value";
+        }
         // GET api/<TransactionsController>/5
         [HttpGet("{id}")]
         public string GetTransaction(string transactionID)
