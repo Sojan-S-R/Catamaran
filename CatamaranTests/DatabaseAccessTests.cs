@@ -6,6 +6,8 @@ using Catamaran_API.Models;
 using System.Threading.Tasks;
 using Catamaran_Models.Enums;
 using FluentAssertions;
+using Catamaran_Models.Models;
+using System;
 
 namespace CatamaranTests
 {
@@ -24,14 +26,15 @@ namespace CatamaranTests
         {
             var model = new DataSearchModel()
             {
-                TransactionId = new System.Guid("97934CEA16A448B784CF1BD5D02A5461")
+                TransactionId = new Guid("E1874D1AC8D34EF087571D6117D61506")
             };
             var result = await manager.FetchTransaction(model);
 
             result.Should()
                 .Contain(x=> x.TransactionAmount == 5000
-                && x.TransactionId == new System.Guid("97934CEA16A448B784CF1BD5D02A5461")
-                && x.Vendor == "Amazon");
+                && x.TransactionId == new System.Guid("E1874D1AC8D34EF087571D6117D61506")
+                && x.Vendor == "Ajio"
+                && x.PaymentMethod == PaymentModes.GooglePay);
            
         }
 
@@ -46,6 +49,25 @@ namespace CatamaranTests
 
             result.Should().Contain(x => x.TransactionDate.Month == (int)Months.February);
         }
+
+        [TestMethod]
+        public async Task InsertTransaction()
+        {
+            var model = new TransactionModel()
+            {
+                TransactionId = Guid.NewGuid(),
+                TransactionAmount = 1200,
+                TransactionDate = DateTime.Now,
+                PaymentMethod = PaymentModes.Cash,
+                Vendor = "Flip Kart",
+                Product = "Mobile Phone"
+            };
+
+            var result = await manager.InsertTransaction(model);
+
+            Assert.AreEqual(result, 1);
+        }
+
 
         private static IConfigurationRoot ConfigurationBuilder()
         {

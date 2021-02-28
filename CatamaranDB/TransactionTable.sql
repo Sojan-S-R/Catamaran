@@ -5,5 +5,5 @@
     [TransactionAmount] MONEY NOT NULL, 
     [Vendor] NVARCHAR(50) NULL, 
     [Product] NVARCHAR(50) NULL, 
-    [PaymentMode] NVARCHAR(50) NULL
+    [PaymentMode] INT NOT NULL
 )

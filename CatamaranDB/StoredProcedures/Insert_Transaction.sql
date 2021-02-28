@@ -2,9 +2,9 @@
 	@TransactionId uniqueidentifier,
     @TransactionDate date,
     @TransactionAmount money,
-    @Vendor nvarchar = null,
-    @Product nvarchar = null,
-    @PaymentMode nvarchar
+    @Vendor nvarchar(50) = null,
+    @Product nvarchar(50) = null,
+    @PaymentMode int
 AS
 	INSERT INTO [dbo].[TransactionTable] 
 	([TransactionID]

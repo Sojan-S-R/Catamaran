@@ -45,11 +45,37 @@ namespace Catamaran_API.DataAccess
             return null;
         }
 
-        //public async Task InsertTransaction(TransactionModel model)
-        //{
-        //    var connectionString = _configuration.GetConnectionString("CatamaranDB");
+        public async Task<int> InsertTransaction(TransactionModel model)
+        {
+            int result = 0;
+            var connectionString = _configuration.GetConnectionString("CatamaranDB");
+            SqlConnection conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand("Insert_Transaction", conn);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-        //}
+            cmd.Parameters.AddWithValue("@TransactionID", model.TransactionId);
+            cmd.Parameters.AddWithValue("@TransactionDate", model.TransactionDate);
+            cmd.Parameters.AddWithValue("@TransactionAmount", model.TransactionAmount);
+            cmd.Parameters.AddWithValue("@Vendor", model.Vendor);
+            cmd.Parameters.AddWithValue("@Product", model.Product);
+            cmd.Parameters.AddWithValue("@PaymentMode", model.PaymentMethod);
+
+            try
+            {
+                conn.Open();
+                result = cmd.ExecuteNonQuery();
+                await conn.CloseAsync();
+            }
+            catch (Exception ex)
+            {
+                //Add Logging here
+            }
+            finally 
+            {
+                await conn.CloseAsync();
+            }
+            return result;
+        }
 
         private static async Task<List<TransactionModel>> FetchFromDB(Dictionary<object,object> parameterValues)
         {
@@ -80,7 +106,7 @@ namespace Catamaran_API.DataAccess
                     model.TransactionAmount = (decimal)rdr["TransactionAmount"];
                     model.Vendor = (string)rdr["Vendor"];
                     model.Product = (string)rdr["Product"];
-                    model.PaymentMethod = (PaymentModes)Enum.Parse(typeof(PaymentModes), (string)rdr["PaymentMode"], true);
+                    model.PaymentMethod = (PaymentModes)rdr["PaymentMode"];
                     returnList.Add(model);
                 }
 

@@ -7,4 +7,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="TransactionID" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="d946a9cc-d524-4d05-8208-b6d827df569f" ChangeDateTime="02/28/2021 16:20:48">
+    <Property Name="ElementName" Value="[dbo].[Ref_Payment_Mode].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Ref_Payment_Mode]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Cash" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e5ca1520-12ec-4cf0-acde-6c3306645f40" ChangeDateTime="02/28/2021 16:22:26">
+    <Property Name="ElementName" Value="[dbo].[Ref_Payment_Mode].[        PhonePay,]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Ref_Payment_Mode]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PhonePay" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="35d24236-bfca-4110-a34e-bf25387378e9" ChangeDateTime="02/28/2021 16:24:50">
+    <Property Name="ElementName" Value="[dbo].[Ref_Payment_Mode].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Ref_Payment_Mode]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Mode" />
+  </Operation>
 </Operations>

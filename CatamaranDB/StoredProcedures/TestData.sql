@@ -12,7 +12,7 @@
         5000,
         'Flipkart',
         'Laptop Stand',
-        'Google Pay'   
+        0   
     ),
     (
      	NEWID(),
@@ -20,7 +20,7 @@
         5000,
         'Amazon',
         'Book',
-        'Phone Pay'   
+        7   
     ),    
     (
      	NEWID(),
@@ -28,7 +28,15 @@
         5000,
         'Tata Cliq',
         'TShirt',
-        'Net Banking'   
+        5  
+    ),
+        (
+     	NEWID(),
+        GETDATE(),
+        5000,
+        'Ajio',
+        'TShirt',
+        6  
     );
 
 

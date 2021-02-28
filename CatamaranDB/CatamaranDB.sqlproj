@@ -62,11 +62,11 @@
     <Build Include="TransactionTable.sql" />
     <Build Include="StoredProcedures\Insert_Transaction.sql" />
     <Build Include="StoredProcedures\Retreive_Transaction.sql" />
+    <Build Include="Ref_Payment_Mode.sql" />
+    <None Include="StoredProcedures\Reference_Scripts.sql" />
+    <None Include="StoredProcedures\TestData.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CatamaranDB.refactorlog" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="TestData.sql" />
   </ItemGroup>
 </Project>
