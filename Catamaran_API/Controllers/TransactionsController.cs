@@ -20,16 +20,16 @@ namespace Catamaran_API.Controllers
             _manager = manager;
         }
 
-        [HttpGet("/{id}")]
+        [HttpGet("/TransactionId={transactionID}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<TransactionModel>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetTransaction(string transactionID)
+        public async Task<IActionResult> GetTransaction(Guid transactionID)
         {
             var returnValue = await _manager.FetchTransaction
                 (
                     new Models.DataSearchModel()
                     {
-                        TransactionId = new Guid(transactionID)
+                        TransactionId = transactionID
                     }
                 );
             if (returnValue != null)
@@ -38,7 +38,7 @@ namespace Catamaran_API.Controllers
                 return NotFound();
         }
 
-        [HttpGet("/{month}")]
+        [HttpGet("/Month={month}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<TransactionModel>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetMonthly(int month)
@@ -56,7 +56,7 @@ namespace Catamaran_API.Controllers
                 return NotFound();
         }
 
-        [HttpGet("/{year}")]
+        [HttpGet("/Year={year}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<TransactionModel>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetYearly(int year)

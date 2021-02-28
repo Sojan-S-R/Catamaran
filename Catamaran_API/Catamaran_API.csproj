@@ -15,8 +15,4 @@
     <ProjectReference Include="..\Catamaran_Models\Catamaran_Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="SqlScripts\" />
-  </ItemGroup>
-
 </Project>

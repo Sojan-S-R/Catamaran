@@ -21,7 +21,7 @@ namespace Catamaran_API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddSingleton<DatabaseAccessManager>();
+            services.AddScoped<DatabaseAccessManager>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
