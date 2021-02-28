@@ -20,7 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="DatabaseAccessTests.cs">
+    <Compile Update="AccessCodeTests\DatabaseAccessTests.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Update="ControllerTests\DatabaseAccessTests.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
   </ItemGroup>

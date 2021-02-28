@@ -8,6 +8,7 @@ using Catamaran_Models.Enums;
 using FluentAssertions;
 using Catamaran_Models.Models;
 using System;
+using CatamaranTests.Utils;
 
 namespace CatamaranTests
 {
@@ -18,7 +19,7 @@ namespace CatamaranTests
 
         public DatabaseAccessTests()
         {
-            manager = new DatabaseAccessManager(ConfigurationBuilder());
+            manager = new DatabaseAccessManager(AppConfigurationBuilder.Build());
         }
 
         [TestMethod]
@@ -66,17 +67,6 @@ namespace CatamaranTests
             var result = await manager.InsertTransaction(model);
 
             Assert.AreEqual(result, 1);
-        }
-
-
-        private static IConfigurationRoot ConfigurationBuilder()
-        {
-            var configuration = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile(@"D:\Catamaran\Catamaran\Catamaran_API\appsettings.json")
-            .Build();
-
-            return configuration;
         }
     }
 }
