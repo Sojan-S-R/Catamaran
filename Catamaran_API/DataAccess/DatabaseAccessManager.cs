@@ -1,6 +1,5 @@
 ﻿using Catamaran_API.Models;
 using Catamaran_Models.Enums;
-using Catamaran_Models.Interfaces;
 using Catamaran_Models.Models;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -13,14 +12,15 @@ namespace Catamaran_API.DataAccess
     public class DatabaseAccessManager
     {
         private static IConfiguration _configuration { get; set; }
-        private static Dictionary<object, object> KeyValues;
+        private Dictionary<object, object> KeyValues;
 
         public DatabaseAccessManager(IConfiguration configuration)
         {
             _configuration = configuration;
+            KeyValues = new Dictionary<object, object>();
         }
 
-        public static async Task<List<TransactionModel>> FetchTransaction(DataSearchModel search)
+        public async Task<List<TransactionModel>> FetchTransaction(DataSearchModel search)
         {
             KeyValues.Add("@TransactionID", null);
             KeyValues.Add("@TransactionMonth", null);
@@ -49,31 +49,43 @@ namespace Catamaran_API.DataAccess
 
             List<TransactionModel> returnList = new List<TransactionModel>();
             TransactionModel model = new TransactionModel();
+            SqlDataReader rdr = null;
+            var connectionString = _configuration.GetConnectionString("CatamaranDB");
+            SqlConnection conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand("Retreive_Transaction", conn);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+            foreach (var item in parameterValues)
+            {
+                if (item.Value != null)
+                    cmd.Parameters.Add(item.Key.ToString(), System.Data.SqlDbType.UniqueIdentifier).Value = item.Value;
+            }
             try
             {
-                var connectionString = _configuration.GetConnectionString("CatamaranDB");
-                SqlConnection conn = new SqlConnection(connectionString);
-                SqlCommand cmd = new SqlCommand("Retreive_Transaction", conn);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.Add("@TransactionID", System.Data.SqlDbType.UniqueIdentifier).Value = "";
+
                 conn.Open();
-                SqlDataReader rdr = cmd.ExecuteReader();
+                rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
-                        model.TransactionId = (Guid)rdr["TransactionID"];
-                        model.TransactionDate = (DateTime)rdr["TransactionDate"];
-                        model.TransactionAmount = (long)rdr["TransactionAmount"];
-                        model.Vendor = (string)rdr["Vendor"];
-                        model.Product = (string)rdr["Product"];
-                        model.PaymentMethod = (PaymentModes)Enum.Parse(typeof(PaymentModes), (string)rdr["PaymentMode"], true);
-                        returnList.Add(model);
+                    model.TransactionId = (Guid)rdr["TransactionID"];
+                    model.TransactionDate = (DateTime)rdr["TransactionDate"];
+                    model.TransactionAmount = (decimal)rdr["TransactionAmount"];
+                    model.Vendor = (string)rdr["Vendor"];
+                    model.Product = (string)rdr["Product"];
+                    model.PaymentMethod = (PaymentModes)Enum.Parse(typeof(PaymentModes), (string)rdr["PaymentMode"], true);
+                    returnList.Add(model);
                 }
+
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+                //Add logging
+            }
+            finally 
+            {
                 await rdr.DisposeAsync();
                 conn.Close();
-            }
-            catch (Exception)
-            {
-                return null;
             }
             return returnList;
         }
