@@ -19,6 +19,8 @@ jobs:
         dotnet-version: 5.0.x
     - name: Restore dependencies
       run: dotnet restore
+    - name: Restoring the database
+      run: sqlpackage /Action:Import /sf:${{github.workspace}}\partsnew.bacpac /tsn:${{secrets.DB_SERVER}} /tdn:${{env.database}} /tu:${{env.db_user}} /tp:${{ secrets.db_password }} /p:DatabaseMaximumSize=2 /p:DatabaseEdition=Basic
     - name: Build
       run: dotnet build --no-restore
     - name: Test
