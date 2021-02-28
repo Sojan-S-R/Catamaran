@@ -56,12 +56,17 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="StoredProcedures" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Retreive_Transaction.sql" />
     <Build Include="TransactionTable.sql" />
+    <Build Include="StoredProcedures\Insert_Transaction.sql" />
+    <Build Include="StoredProcedures\Retreive_Transaction.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CatamaranDB.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestData.sql" />
   </ItemGroup>
 </Project>
