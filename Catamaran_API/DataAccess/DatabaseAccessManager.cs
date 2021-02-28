@@ -13,6 +13,7 @@ namespace Catamaran_API.DataAccess
     public class DatabaseAccessManager
     {
         private static IConfiguration _configuration { get; set; }
+
         private Dictionary<object, object> KeyValues;
 
         public DatabaseAccessManager(IConfiguration configuration)

@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Catamaran_API.DataAccess;
+using Catamaran_Models.Enums;
+using Catamaran_Models.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Catamaran_API.Controllers
@@ -10,27 +13,77 @@ namespace Catamaran_API.Controllers
     [ApiController]
     public class TransactionsController : ControllerBase
     {
-        [HttpGet("{id}")]
-        public string GetTransaction(string transactionID)
+        private DatabaseAccessManager _manager { get; set; }
+
+        public TransactionsController(DatabaseAccessManager manager)
         {
-            return "value";
+            _manager = manager;
         }
 
-        [HttpGet("{id}")]
-        public string GetMonthly(int month)
+        [HttpGet("/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<TransactionModel>))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetTransaction(string transactionID)
         {
-            return "value";
+            var returnValue = await _manager.FetchTransaction
+                (
+                    new Models.DataSearchModel()
+                    {
+                        TransactionId = new Guid(transactionID)
+                    }
+                );
+            if (returnValue != null)
+                return Ok(returnValue);
+            else
+                return NotFound();
         }
 
-        [HttpGet("{id}")]
-        public string GetYearly(int year)
+        [HttpGet("/{month}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<TransactionModel>))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetMonthly(int month)
         {
-            return "value";
+            var returnValue = await _manager.FetchTransaction
+            (
+                new Models.DataSearchModel()
+                {
+                    Month = (Months)month
+                }
+            );
+            if (returnValue != null)
+                return Ok(returnValue);
+            else
+                return NotFound();
+        }
+
+        [HttpGet("/{year}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<TransactionModel>))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetYearly(int year)
+        {
+            var returnValue = await _manager.FetchTransaction
+            (
+                new Models.DataSearchModel()
+                {
+                    Year = year
+                }
+            );
+            if (returnValue != null)
+                return Ok(returnValue);
+            else
+                return NotFound();
         }
 
         [HttpPost]
-        public void Post([FromBody] string value)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Post([FromBody] TransactionModel model)
         {
+            var returnValue = await _manager.InsertTransaction(model);
+            if (returnValue != 0)
+                return Ok();
+            else
+                return BadRequest();
         }
     }
 }
