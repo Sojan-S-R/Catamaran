@@ -1,5 +1,6 @@
 ﻿using Catamaran_API.Models;
 using Catamaran_Models.Enums;
+using Catamaran_Models.Interfaces;
 using Catamaran_Models.Models;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -44,12 +45,19 @@ namespace Catamaran_API.DataAccess
             return null;
         }
 
+        //public async Task InsertTransaction(TransactionModel model)
+        //{
+        //    var connectionString = _configuration.GetConnectionString("CatamaranDB");
+
+        //}
+
         private static async Task<List<TransactionModel>> FetchFromDB(Dictionary<object,object> parameterValues)
         {
 
             List<TransactionModel> returnList = new List<TransactionModel>();
             TransactionModel model = new TransactionModel();
             SqlDataReader rdr = null;
+
             var connectionString = _configuration.GetConnectionString("CatamaranDB");
             SqlConnection conn = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand("Retreive_Transaction", conn);
@@ -58,7 +66,7 @@ namespace Catamaran_API.DataAccess
             foreach (var item in parameterValues)
             {
                 if (item.Value != null)
-                    cmd.Parameters.Add(item.Key.ToString(), System.Data.SqlDbType.UniqueIdentifier).Value = item.Value;
+                    cmd.Parameters.AddWithValue(item.Key.ToString(), item.Value);
             }
             try
             {
