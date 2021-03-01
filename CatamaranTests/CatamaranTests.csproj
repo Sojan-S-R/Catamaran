@@ -23,7 +23,7 @@
     <Compile Update="AccessCodeTests\DatabaseAccessTests.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Update="ControllerTests\DatabaseAccessTests.cs">
+    <Compile Update="ControllerTests\ControllerTests.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
   </ItemGroup>

@@ -10,7 +10,7 @@ using Catamaran_Models.Models;
 using System;
 using CatamaranTests.Utils;
 
-namespace CatamaranTests
+namespace CatamaranTests.Controllers
 {
     [TestClass]
     public class ControllerTests

@@ -102,24 +102,16 @@ namespace Catamaran_API.DataAccess
                 rdr = cmd.ExecuteReader();
                     while (rdr.Read())
                     {
-                    //model.TransactionId = (Guid)rdr["TransactionID"];
-                    //model.TransactionDate = (DateTime)rdr["TransactionDate"];
-                    //model.TransactionAmount = (decimal)rdr["TransactionAmount"];
-                    //model.Vendor = (string)rdr["Vendor"];
-                    //model.Product = (string)rdr["Product"];
-                    //model.PaymentMethod = (PaymentModes)rdr["PaymentMode"];
-                    //returnList.Add(model);
-
-                    returnList.Add(
-                        new TransactionModel
-                        {
-                            TransactionId = (Guid)rdr["TransactionID"],
-                            TransactionDate = (DateTime)rdr["TransactionDate"],
-                            TransactionAmount = (decimal)rdr["TransactionAmount"],
-                            Vendor = (string)rdr["Vendor"],
-                            Product = (string)rdr["Product"],
-                            PaymentMethod = (PaymentModes)rdr["PaymentMode"],
-                        });
+                        returnList.Add(
+                            new TransactionModel
+                            {
+                                TransactionId = (Guid)rdr["TransactionID"],
+                                TransactionDate = (DateTime)rdr["TransactionDate"],
+                                TransactionAmount = (decimal)rdr["TransactionAmount"],
+                                Vendor = (string)rdr["Vendor"],
+                                Product = (string)rdr["Product"],
+                                PaymentMethod = (PaymentModes)rdr["PaymentMode"],
+                            });
                     }
 
             }
