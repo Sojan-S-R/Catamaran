@@ -23,7 +23,7 @@ namespace CatamaranTests.DatabaseAccess
         }
 
         [TestMethod]
-        public async Task GuidSearch()
+        public async Task GuidSearchSuccess()
         {
             var model = new DataSearchModel()
             {
@@ -40,7 +40,7 @@ namespace CatamaranTests.DatabaseAccess
         }
 
         [TestMethod]
-        public async Task MonthSearch()
+        public async Task MonthSearchSuccess()
         {
             var model = new DataSearchModel()
             {
@@ -52,7 +52,7 @@ namespace CatamaranTests.DatabaseAccess
         }
 
         [TestMethod]
-        public async Task InsertTransaction()
+        public async Task InsertTransactionSuccess()
         {
             var model = new TransactionModel()
             {

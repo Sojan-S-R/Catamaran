@@ -1,6 +1,5 @@
 ﻿using Catamaran_API.Models;
 using Catamaran_Models.Enums;
-using Catamaran_Models.Interfaces;
 using Catamaran_Models.Models;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -82,7 +81,6 @@ namespace Catamaran_API.DataAccess
         {
 
             List<TransactionModel> returnList = new List<TransactionModel>();
-            TransactionModel model = new TransactionModel();
             SqlDataReader rdr = null;
 
             var connectionString = _configuration.GetConnectionString("CatamaranDB");
