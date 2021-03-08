@@ -1,0 +1,17 @@
+﻿@page "/Login"
+@using CatamaranBlazor.Models
+<h3>Login</h3>
+
+@code {
+    LoginModel model = new LoginModel();
+}
+
+<div class="container">
+    <div class="form-check">
+        <EditForm Model="model">
+            <p>Please enter the username and password</p>
+            <input type="checkbox" />
+            <input type="checkbox" />
+        </EditForm>
+    </div>
+</div>
