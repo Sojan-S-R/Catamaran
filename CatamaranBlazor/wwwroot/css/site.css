@@ -83,6 +83,14 @@ a, .btn-link {
     height: 50vh
 }
 
+.login-wrapper {
+    background-image: url('../Images/Home_Wallpaper1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 94vh
+}
+
 .fa {
     font-size: 52px;
     color: grey;
@@ -106,3 +114,21 @@ a, .btn-link {
         background-color: purple
     }
 
+.form-container {
+    padding:25px;
+    margin-top:25vh;
+    color: whitesmoke;
+    background-color:rgba(0,0,0,0.5)
+}
+    .form-container .validation-errors {
+    
+        padding:0px;
+    }
+    .validation-message {
+        list-style: none;
+        color: skyblue;
+    }
+#username, #password {
+    border-radius: 10px;
+}
+    
