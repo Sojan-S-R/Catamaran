@@ -1,24 +1,46 @@
 ﻿@page "/"
 
-    <div class="container">
-        <div class="jumbotron" style="background-color:rgba(0,0,0,0.5); color: white">
-            <h2 class="text-center">Welcome to Catamaran !</h2>
-            <br/>
-            <p class="text-center">The one stop tool to plan and analyse your spending patterns.</p>
+    <div class="index-wrapper">
+            <div class="jumbotron" style="background-color:rgba(0,0,0,0.5); color: white;height:50vh;">
+                <h2 class="text-center" style="margin-top: 5%">Welcome to Catamaran !</h2>
+                <br />
+                <p class="text-center">The one stop tool to plan and analyse your spending patterns.</p>
+                <br />
+                <div class="text-center"><button class="index-button">Lets get started !</button></div>
+            </div>
+    </div>
+    <div class="jumbotron">
+        <div class="row" style="width:99%; position:absolute; top: 65%">
+            <div class="col-md-2"></div>
 
+            <div class="col-md-2">
+                <div class="card">
+                    <i class="fa fa-bar-chart text-center"></i>
+                    <div class="card-body">
+                        <h5 class="card-title">View your spending via graphs and plots.</h5>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
+                <div class="card">
+                    <i class="fa fa-calculator text-center"></i>
+                    <div class="card-body">
+                        <h5 class="card-title">Analyse you most common source of spending.</h5>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
+                <div class="card">
+                    <i class="fa fa-file text-center"></i>
+                    <div class="card-body">
+                        <h5 class="card-title">Store and retrieve transactions and generate reports.</h5>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <h4>View your spending via graphs and plots.</h4>
-                <i class="fa fa-bar-chart"></i>
-            </div>
-            <div class="col-md-4">
-                <h4>Analyse you most common source of spending.</h4>
-                <i class="fa fa-calculator"></i>
-            </div>
-            <div class="col-md-4">
-                <h4>Store and retrieve transactions and generate reports.</h4>
-                <i class="fa fa-file"></i>
-            </div>
-        </div>
+        
     </div>
