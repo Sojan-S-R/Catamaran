@@ -1,6 +1,58 @@
 ﻿@page "/Register" 
-<h3>Register</h3>
+@using CatamaranBlazor.Models
+
 
 @code {
+    private RegisterModel model = new RegisterModel();
+    private void CallRegister()
+    {
 
+    }
 }
+
+<div class="register-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="form-container">
+                    <EditForm Model="model" OnValidSubmit="@CallRegister">
+                        <h2 class="text-center">Register</h2>
+                        <br />
+                        <p class="text-center">First Name<InputText id="firstName" @bind-Value="model.FirstName" /></p>
+                        <br />
+
+                        <p class="text-center">Last Name<InputText id="lastName" @bind-Value="model.LastName" /></p>
+                        <br />
+
+                        <p class="text-center">Email<InputText id="email" @bind-Value="model.EmailAddress" /></p>
+                        <br />
+
+                        <p class="text-center">Date of Birth<InputDate id="dob" @bind-Value="model.DateOfBirth" /></p>
+                        <br />
+
+                        <p class="text-center">Phone Number<InputNumber id="email" @bind-Value="model.PhoneNumber" /></p>
+                        <br />
+
+                        <p class="text-center">User Name<InputText id="userName" @bind-Value="model.Username" /></p>
+                        <br />
+
+                        <p class="text-center">Password<InputText type="password" placeholder="Password" id="password" @bind-Value="model.Password" /></p>
+                        <br />
+
+                        <p class="text-center">Re-enter Password<InputText type="password" placeholder="Password" id="password" @bind-Value="model.Reenter_Password" /></p>
+                        <br />
+
+                        <div class=" text-center">
+                            <DataAnnotationsValidator />
+                            <ValidationSummary />
+                        </div>
+                        <br />
+                        <div class="text-center"><button class="btn btn-info" type="submit">Go !</button></div>
+                    </EditForm>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+</div>

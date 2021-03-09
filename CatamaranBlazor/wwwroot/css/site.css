@@ -91,6 +91,14 @@ a, .btn-link {
     height: 94vh
 }
 
+.register-wrapper {
+    background-image: url('../Images/Home_Wallpaper2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 94vh
+}
+
 .fa {
     font-size: 52px;
     color: grey;
@@ -120,6 +128,11 @@ a, .btn-link {
     color: whitesmoke;
     background-color:rgba(0,0,0,0.5)
 }
+
+.register-wrapper .form-container {
+    margin-top:0vh
+}
+
     .form-container .validation-errors {
     
         padding:0px;
