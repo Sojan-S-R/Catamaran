@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace Catamaran_API.DataAccess
 {
-    public class DatabaseAccessManager
+    public class DatabaseAccessManager: IDatabaseAccessManager
     {
-        private static IConfiguration _configuration { get; set; }
+        private static IConfiguration Configuration { get; set; }
 
-        private Dictionary<object, object> KeyValues;
+        private readonly Dictionary<object, object> KeyValues;
 
         public DatabaseAccessManager(IConfiguration configuration)
         {
-            _configuration = configuration;
+            Configuration = configuration;
             KeyValues = new Dictionary<object, object>();
         }
 
@@ -48,10 +48,12 @@ namespace Catamaran_API.DataAccess
         public async Task<int> InsertTransaction(TransactionModel model)
         {
             int result = 0;
-            var connectionString = _configuration.GetConnectionString("CatamaranDB");
+            var connectionString = Configuration.GetConnectionString("CatamaranDB");
             SqlConnection conn = new SqlConnection(connectionString);
-            SqlCommand cmd = new SqlCommand("Insert_Transaction", conn);
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            SqlCommand cmd = new SqlCommand("Insert_Transaction", conn)
+            {
+                CommandType = System.Data.CommandType.StoredProcedure
+            };
 
             cmd.Parameters.AddWithValue("@TransactionID", model.TransactionId);
             cmd.Parameters.AddWithValue("@TransactionDate", model.TransactionDate);
@@ -83,10 +85,12 @@ namespace Catamaran_API.DataAccess
             List<TransactionModel> returnList = new List<TransactionModel>();
             SqlDataReader rdr = null;
 
-            var connectionString = _configuration.GetConnectionString("CatamaranDB");
+            var connectionString = Configuration.GetConnectionString("CatamaranDB");
             SqlConnection conn = new SqlConnection(connectionString);
-            SqlCommand cmd = new SqlCommand("Retreive_Transaction", conn);
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            SqlCommand cmd = new SqlCommand("Retreive_Transaction", conn)
+            {
+                CommandType = System.Data.CommandType.StoredProcedure
+            };
 
             foreach (var item in parameterValues)
             {

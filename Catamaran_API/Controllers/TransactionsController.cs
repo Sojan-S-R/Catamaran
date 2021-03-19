@@ -13,11 +13,11 @@ namespace Catamaran_API.Controllers
     [ApiController]
     public class TransactionsController : ControllerBase
     {
-        private DatabaseAccessManager _manager { get; set; }
+        private IDatabaseAccessManager Manager { get; set; }
 
-        public TransactionsController(DatabaseAccessManager manager)
+        public TransactionsController(IDatabaseAccessManager manager)
         {
-            _manager = manager;
+            Manager = manager;
         }
 
         [HttpGet("/TransactionId={transactionID}")]
@@ -25,7 +25,7 @@ namespace Catamaran_API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetTransaction(Guid transactionID)
         {
-            var returnValue = await _manager.FetchTransaction
+            var returnValue = await Manager.FetchTransaction
                 (
                     new Models.DataSearchModel()
                     {
@@ -43,7 +43,7 @@ namespace Catamaran_API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetMonthly(int month)
         {
-            var returnValue = await _manager.FetchTransaction
+            var returnValue = await Manager.FetchTransaction
             (
                 new Models.DataSearchModel()
                 {
@@ -61,7 +61,7 @@ namespace Catamaran_API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetYearly(int year)
         {
-            var returnValue = await _manager.FetchTransaction
+            var returnValue = await Manager.FetchTransaction
             (
                 new Models.DataSearchModel()
                 {
@@ -79,7 +79,7 @@ namespace Catamaran_API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Post([FromBody] TransactionModel model)
         {
-            var returnValue = await _manager.InsertTransaction(model);
+            var returnValue = await Manager.InsertTransaction(model);
             if (returnValue != 0)
                 return Ok();
             else
